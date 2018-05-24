@@ -8,23 +8,21 @@
           {{ appendIdx(item) }}
           <div v-if="multiple">
             <input type="checkbox" :disabled="item.disabled" :checked="item.selected" @change="checkboxChanged(item)" :id="id(item)">
-            <label :for="id(item)" @click="itemClicked(item)">{{ item.label }}</label>
+            <label :for="id(item)" @click="itemClicked(item)" v-html="item.label"></label>
           </div>
-          <div v-else>
-            {{ item.label }}
+          <div v-else v-html="item.label">
           </div>
         </div>
         <div v-if="grouped">
           <div v-for="group in items" class="group">
-            <h3>{{ group.label }}</h3>
+            <h3 v-html="group.label"></h3>
             <div class="item" v-for="item in group.children" :data-title="item.label" @click="!multiple && itemClicked(item)" :class="{selected: item.selected}">
               {{ appendIdx(item) }}
               <div v-if="multiple">
                 <input type="checkbox" :disabled="item.disabled" :checked="item.selected" @change="checkboxChanged(item)" :id="id(item)">
-                <label :for="id(item)" @click="itemClicked(item)">{{ item.label }}</label>
+                <label :for="id(item)" @click="itemClicked(item)" v-html="item.label"></label>
               </div>
-              <div v-else>
-                {{ item.label }}
+              <div v-else v-html="item.label">
               </div>
             </div>
           </div>
